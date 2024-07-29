@@ -1,0 +1,193 @@
+1
+
+2
+
+3
+
+4
+
+10
+****************************************
+
+file_1 = open('task/group_1.txt', 'r', encoding='utf-8')
+file_2 = open('task/Additional_info/group_2.txt', 'r', encoding='utf-8')
+
+summa = 0
+diff = 0
+compose = 1
+
+for i_line in file_1:
+    info = i_line.split()
+    if info:
+        summa += int(info[2])
+        diff -= int(info[2])
+
+for i_line in file_2:
+    info = i_line.split()
+    if info:
+        compose *= int(info[2])
+
+file_1.close()
+file_2.close()
+
+print(summa)
+print(diff)
+print(compose)
+
+****************************************
+import os
+
+abs_path = os.path.abspath(os.path.join('..', '..'))
+print('Содержимое каталога', abs_path)
+for i_dir in os.listdir(abs_path):
+    print('   ', os.path.abspath(os.path.join(abs_path, i_dir)))
+
+****************************************
+import os
+
+path = '/Users/dmitriy/PycharmProjects/skillbox/Module 9/'
+
+print('Абсолютный путь:', path)
+
+if os.path.exists(path):
+    if os.path.isdir(path):
+        print('Это директория')
+
+    if os.path.isfile(path):
+        print('Это файл')
+        print('Размер файла:', os.path.getsize(path), 'байт')
+
+    if os.path.islink(path):
+        print('Это ссылка')
+
+else:
+    print('Указанного пути не существует')
+****************************************
+import os
+
+
+def abs_path(file):
+    path = os.path.abspath(file)
+    return path
+
+
+def relative_path(file):
+    path = os.path.join('..', '..', file)
+    return path
+
+
+file = 'admin.bat'
+
+print(abs_path(file))
+print(relative_path(file))
+
+****************************************
+
+****************************************
+import os
+import random
+
+
+def search_file(path, file):
+    result = list()
+    for i_dir in os.listdir(path):
+        full_path = os.path.join(path, i_dir)
+        if i_dir == file:
+            result.append(full_path)
+        elif os.path.isdir(full_path):
+            result += search_file(full_path, file)
+    return result
+
+
+search_path = '/Users/dmitriy/PycharmProjects/'
+name = input('Введите имя файла для поиска: ')
+list_of_paths = search_file(search_path, name)
+
+if len(list_of_paths) > 0:
+
+    file = open(random.choice(list_of_paths), 'r', encoding='utf-8')
+
+    print('Содержимое файла', name)
+    for i_line in file:
+        print(i_line, end='')
+
+    file.close()
+else:
+    print('Файл не найден!')
+
+****************************************
+import os
+
+
+def fileopen(path_to):
+    if os.path.isfile(path_to):
+        temp = open(path_to)
+        data = temp.read()
+        temp.close()
+        return data
+    else:
+        dirs = os.listdir(path_to)
+        for dirr in dirs:
+            if dirr:
+                return fileopen(os.path.abspath(os.path.join(path_to, dirr)))
+
+
+names = os.listdir()
+
+scripts = open('scripts.txt', 'a')
+
+mypath = os.path.abspath('../Module 9')
+
+for name in names:
+    scripts.write(fileopen(os.path.join(mypath, name)) + '\n' + ('*' * 40) + '\n')
+
+scripts.close()
+
+****************************************
+20
+****************************************
+nums = open('numbers.txt', 'r')
+result = open('answer.txt', 'w')
+summ = 0
+temp = [num.replace('\n', '') for num in nums]
+
+for num in temp:
+    if num.isdigit():
+        summ += int(num)
+
+result.write(str(summ))
+
+nums.close()
+result.close()
+****************************************
+Бобровский Игорь 10
+
+Дронов Александр 20
+
+Жуков Виктор 30
+****************************************
+import os
+
+print('Корень диска:', os.sep)
+****************************************
+import os
+
+
+def search_file(path, file):
+    result = list()
+    for i_dir in os.listdir(path):
+        full_path = os.path.join(path, i_dir)
+        if i_dir == file:
+            result.append(full_path)
+        elif os.path.isdir(full_path):
+            result += search_file(full_path, file)
+    return result
+
+
+path = '/Users/dmitriy/PycharmProjects/'
+
+name = 'file_dev.py'
+
+for i_path in search_file(path, name):
+    print(i_path)
+****************************************

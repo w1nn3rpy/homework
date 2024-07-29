@@ -1,0 +1,5 @@
+EERROR
+and
+there
+real ERROR
+hello ERROR world
