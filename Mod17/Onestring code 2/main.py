@@ -1,0 +1,1 @@
+print(list(filter(lambda x: x.islower() and not x.isdigit(), input('Введите строку: '))))
