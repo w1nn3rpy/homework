@@ -6,9 +6,7 @@ from collections import Counter
 """
 
 def can_be_poly(string: str) -> bool:
-    char_counter = Counter(string)
-    odd_count = sum(1 for count in char_counter.values() if count % 2 != 0)
-    return odd_count <= 1
+    return len(list(filter(lambda x: x % 2, Counter(string).values()))) <= 1
 
 print(can_be_poly('abcba'))
 print(can_be_poly('abbbc'))
