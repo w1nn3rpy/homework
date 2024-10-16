@@ -134,3 +134,9 @@ dmypy.json
 venv/
 .env.dist
 .DS_Store
+/bubble sort.py
+/insertion sort.py
+/bucket sort.py
+/merge sort.py
+/selection sort.py
+/shell sort.py
