@@ -7,9 +7,7 @@ from collections import Counter
 """
 
 def count_unique_characters(string: str) -> int:
-    unique_chars = Counter(string)
-    count = sum(1 for count in unique_chars.values() if count == 1)
-    return count
+    return sum(filter(lambda x: x == 1, Counter(string).values()))
 
 
 message = "Today is a beautiful day! The sun is shining and the birds are singing."
